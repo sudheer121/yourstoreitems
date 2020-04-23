@@ -11,14 +11,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #telling sqlalchemy the loccation of database
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #app.config['PROPAGATE_EXCEPTIONS'] = True # To allow flask propagating exception even if debug is set to false on app
-app.secret_key = 'jose'
+app.secret_key = 'sudheer'
 api = Api(app)
-
-@app.before_first_request #runs the method below it before the first request into the app
-def create_tables():
-    db.create_all() #creates data.db(line 10) and creates tables 
-    #it creates the table form all the classes that extend db.Model
-    #eg: table for items created like this --> first it goes to Store then since Store imports StoreModel it imports StoreModel
 
 jwt = JWT(app, authenticate, identity)
 
